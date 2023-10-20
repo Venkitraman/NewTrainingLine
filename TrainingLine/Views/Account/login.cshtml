@@ -1,0 +1,59 @@
+﻿@model TrainingLine.Models.signIn
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TrainingLine.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container mt-3">
+<h4>SignIn</h4>
+<hr />
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mt-3">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <div class="form-check">
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
+                        </div>
+                        <span asp-validation-for="RememberMe" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+
+
+
+<div>
+    <p>Click <a asp-action="signup" asp-controller="Account">Here</a> to SignUp</p>
+</div>
+    </div>
+</body>
+</html>

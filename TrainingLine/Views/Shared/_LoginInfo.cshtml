@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject Microsoft.AspNetCore.Identity.SignInManager<IdentityUser> _signInManager
+
+@if (_signInManager.IsSignedIn(User))
+{
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Hello @User.Identity.Name
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" asp-action="Logout" asp-controller="Account">LogOut</a></li>
+        </ul>
+    </div>
+}
+else
+{
+    <button type="button" class="btn btn-warning me-2">
+        <a asp-action="login" asp-controller="Account">Login</a>
+    </button>
+    <button type="button" class="btn btn-info">
+        <a asp-action="signup" asp-controller="Account">Register</a>
+    </button>
+}
+
+    
