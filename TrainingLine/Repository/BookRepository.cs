@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TrainingLine.Models;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace TrainingLine.Repository
 {
@@ -32,14 +34,24 @@ namespace TrainingLine.Repository
             return DataSource().Where(x => x.Title.Contains(Title) || x.Author.Contains(Author)).ToList();
         }
 
-        public void AddBooks(BookModel books)
+        public void AddBooks(coverPhoto coverPhoto)
         {
-            if (books != null)
+            if (coverPhoto != null)
             {
-                _dbcontext.Book.Add(books);
+                //_dbcontext.Book.Add(coverPhoto);
                 _dbcontext.SaveChanges();
             }
         }
+
+        //Edit Book
+        //public void EditBook(BookModel books)
+        //{
+        //    if (books != null)
+        //    {
+        //        _dbcontext.Book.Update(books);
+        //        _dbcontext.SaveChanges();
+        //    }
+        //}
 
         private List<BookModel> DataSource()
         {
@@ -51,5 +63,44 @@ namespace TrainingLine.Repository
                 new BookModel(){Id=4,Title="Mern",Author="Alfi",Description="MongoDB , ExpressJS , ReactJS , NodeJS it is a fullstack development !!!",Category="Modaling",Total_Pages=4001,Language="English"}
             };
         }
+        public BookModel GetDbBookId(int id)
+        {
+            var book = _dbcontext.Book.FirstOrDefault(b => b.Id == id);
+            // Make sure to handle the case where the book is not found.
+            if (book == null)
+            {
+                return null;
+            }
+            return book;
+        }
+        public void EditBooks(BookModel book)
+        {
+            if (book != null)
+            {
+                _dbcontext.Book.Update(book);
+                _dbcontext.SaveChanges();
+            }
+        }
+
+        //Delete Book 
+        public BookModel GetDbDeleteBookId(int id)
+        {
+            var book = _dbcontext.Book.FirstOrDefault(b => b.Id == id);
+            // Make sure to handle the case where the book is not found.
+            if (book == null)
+            {
+                return null;
+            }
+            return book;
+        }
+        public void DeleteBooks(BookModel book)
+        {
+            if (book != null)
+            {
+                _dbcontext.Book.Remove(book);
+                _dbcontext.SaveChanges();
+            }
+        }
+
     }
 }

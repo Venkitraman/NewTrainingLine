@@ -23,6 +23,7 @@ namespace TrainingLine.Controllers
 
         public IActionResult Privacy()
         {
+            throw new Exception("Sorry you have no access !!!");
             return View();
         }
 

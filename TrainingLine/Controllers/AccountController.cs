@@ -15,11 +15,13 @@ namespace TrainingLine.Controllers
         {
             return View();
         }
+        //Signup Action Method 
         [Route("signup")]
         public IActionResult signup()
         {
             return View();
         }
+        //Signup Post Action Method
         [Route("signup")]
         [HttpPost]
         public async Task<IActionResult> signup(SighUpUserModel sighUpUser)
@@ -29,21 +31,24 @@ namespace TrainingLine.Controllers
                 var result = await _accountRepository.CreateUserAsync(sighUpUser);
                 if (!result.Succeeded)
                 {
-                    foreach(var errorMessage  in result.Errors)
+                    foreach(var errorMessage in result.Errors)
                     {
                         ModelState.AddModelError("", errorMessage.Description);
                     }
                     return View(sighUpUser); 
                 }
                 ModelState.Clear();
+                return RedirectToAction("Index","Home");
             }
             return View();
         }
+        //Login Action Method
         [Route("login")]
         public IActionResult login()
         {
             return View();
         }
+        //Login Post Action Method
         [Route("login")]
         [HttpPost]
         public async Task<IActionResult> login(signIn signIn)
@@ -55,14 +60,15 @@ namespace TrainingLine.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid Credentials");
-                }
+                //else
+                //{
+                //    ModelState.AddModelError("", "Invalid Credentials");
+                //}
                 
             }
             return View(signIn);
         }
+        //Logout Action Method ,if logout it will redirect to HOME .
         [Route("logout")]
         public async Task<IActionResult> logout()
         {

@@ -1,12 +1,8 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
+﻿using System.ComponentModel.DataAnnotations;
 namespace TrainingLine.Models
 {
-    public class BookModel
+    public class BookViewModel : EditImageViewModel
     {
-        [Key]        
-        public int Id { get; set; }
         [Required(ErrorMessage = "Please enter Title")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Please enter Title")]
@@ -17,8 +13,5 @@ namespace TrainingLine.Models
         public int Total_Pages { get; set; }
         [Required(ErrorMessage = "Please enter Title")]
         public string Language { get; set; }
-        //[DisplayName("Choose a Cover Photo")]
-        //[Required]
-        //public string CoverPhoto { get; set; }
     }
 }
